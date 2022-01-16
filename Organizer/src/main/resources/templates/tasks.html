@@ -44,8 +44,53 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Dodaj Nowe Zadanie
 </button>
+    <button type="button" class="btn btn-primary btn-filter" data-bs-toggle="modal" data-bs-target="#filterModal">
+        Filtruj...
+    </button>
 </div>
-<!-- Modal -->
+<!-- Filter Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filtruj</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-filter">
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" aria-expanded="false">
+                        Według daty
+                    </button>
+                    <ul class="dropdown-menu filter-elm">
+                        <input type="date" id="filter-date" name="date">
+                    </ul>
+                </div>
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" style="margin-bottom: 10px;" aria-expanded="false">
+                        Według typu
+                    </button>
+                    <ul class="dropdown-menu filter-elm">
+                        <select class="form-select">
+                            <option value="" hidden>Wybierz typ zadania</option>
+                            <option value="Praca">Praca</option>
+                            <option value="Szkoła">Szkoła</option>
+                            <option value="Czas Wolny">Czas Wolny</option>
+                            <option value="Obowiązki domowe">Obowiązki domowe</option>
+                            <option value="Spotkanie">Spotkanie</option>
+                            <option value="Wydażenie">Wydażenie</option>
+                            <option value="Inne">Inne</option>
+                        </select>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-primary">Filtruj</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Task Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -100,7 +145,7 @@
 <table class="table my-table">
     <thead>
         <tr>
-            <th>Id</th>
+<!--            <th>Id</th>-->
             <th>Nazwa</th>
             <th>Opis zadania</th>
             <th>Typ</th>
@@ -111,13 +156,20 @@
     </thead>
     <tbody>
         <tr th:each="task : ${tasks}">
-            <td th:text="${task.task_id}">Id</td>
+<!--            <td th:text="${task.task_id}">Id</td>-->
             <td th:text="${task.task_name}">Name</td>
             <td th:text="${task.task_description}">Description</td>
             <td th:text="${task.task_type}">Type</td>
             <td th:text="${task.task_date}">Date</td>
             <td th:text="${task.with_reminder}">With Reminder</td>
             <td th:text="${task.created_on}">Created On</td>
+<!--            <td><button type="submit" th:action="@{/delete/{id}(id=${task.task_id})}" class="btn btn-primary">Usuń</button></td>-->
+            <td>
+                <form th:action="@{/delete/{id}(id=${task.task_id})}" th:object="${task}" method="post">
+                    <input type="hidden" th:field="${task}"/>
+                    <button type="submit" class="btn btn-primary" onClick="return confirm('Czy napewno usunąć dany wpis?')">Usuń</button>
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>

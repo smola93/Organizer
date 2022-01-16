@@ -7,4 +7,5 @@ import java.util.List;
 public interface ITaskService {
     List<Task> findAll();
     Task createTask(Task task);
+    void deleteTaskById(Long id);
 }

@@ -46,6 +46,12 @@ public class TaskControler {
         return ("redirect:/");
     }
 
+    @PostMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        tasksService.deleteTaskById(id);
+        return ("redirect:/");
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.registerCustomEditor(       Date.class,
