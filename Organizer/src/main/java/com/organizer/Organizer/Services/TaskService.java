@@ -3,8 +3,10 @@ package com.organizer.Organizer.Services;
 import com.organizer.Organizer.Models.Task;
 import com.organizer.Organizer.Repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,5 +29,19 @@ public class TaskService implements ITaskService {
     @Override
     public void deleteTaskById(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public List<Task> findByTaskDate(Date date) {
+        var tasks = (List<Task>) repository.findByDate(date);
+
+        return tasks;
+    }
+
+    @Override
+    public List<Task> findByTaskType(String type) {
+        var tasks = (List<Task>) repository.findByType(type);
+
+        return tasks;
     }
 }

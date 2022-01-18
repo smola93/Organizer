@@ -52,6 +52,21 @@ public class TaskControler {
         return ("redirect:/");
     }
 
+    @PostMapping(value = "/by-date/")
+    public String showRecordsByDate(@RequestParam("date") Date date, Model model) {
+        var tasks = (List<Task>) tasksService.findByTaskDate(date);
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("task", new Task());
+        return ("tasks");
+    }
+    @PostMapping(value = "/by-type/")
+    public String showRecordsByType(@RequestParam("type") String type, Model model) {
+        var tasks = (List<Task>) tasksService.findByTaskType(type);
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("task", new Task());
+        return ("tasks");
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.registerCustomEditor(       Date.class,

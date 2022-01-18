@@ -58,19 +58,22 @@
             </div>
             <div class="modal-body modal-filter">
                 <div class="btn-group dropend">
+                    <form th:action="@{/by-date/}" id="send-date" method="post">
                     <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" aria-expanded="false">
                         Według daty
                     </button>
                     <ul class="dropdown-menu filter-elm">
-                        <input type="date" id="filter-date" name="date">
+                        <input type="date" id="filter-date" name="date" th:name="date">
                     </ul>
+                    </form>
                 </div>
                 <div class="btn-group dropend">
-                    <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" style="margin-bottom: 10px;" aria-expanded="false">
+                    <form th:action="@{/by-type/}" id="send-type" method="post">
+                    <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" aria-expanded="false">
                         Według typu
                     </button>
                     <ul class="dropdown-menu filter-elm">
-                        <select class="form-select">
+                        <select class="form-select" id="filter-type" th:name="type">
                             <option value="" hidden>Wybierz typ zadania</option>
                             <option value="Praca">Praca</option>
                             <option value="Szkoła">Szkoła</option>
@@ -80,12 +83,13 @@
                             <option value="Wydażenie">Wydażenie</option>
                             <option value="Inne">Inne</option>
                         </select>
+                        <input type="submit" name="submit" value="Submit" style="display:none;">
                     </ul>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                <button type="button" class="btn btn-primary">Filtruj</button>
             </div>
         </div>
     </div>
