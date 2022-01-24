@@ -10,6 +10,19 @@ body {
     width: 85%;
 }
 
+.login-form {
+    margin: 0 auto;
+    width: 30%;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
 .btn-div {
     display: flex;
     align-items: center;

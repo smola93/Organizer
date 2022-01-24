@@ -20,7 +20,7 @@ public class TaskControler {
     @Autowired
     private ITaskService tasksService;
 
-    @GetMapping
+    @GetMapping(value = "/tasks")
     String returnTasks(Model model) {
         var tasks = (List<Task>) tasksService.findAll();
         model.addAttribute("title", "Lista zadań:");
@@ -29,18 +29,8 @@ public class TaskControler {
         return ("tasks");
     }
 
-    /*
-    @PostMapping
-    public String taskSubmit(@ModelAttribute Task task, Model model) {
-        tasksService.createTask(task);
-        model.addAttribute("task", task);
-        return "result";
-    }
-    */
-
     @PostMapping(value = "/tasks")
     public String taskSubmit(@ModelAttribute Task task, Model model) {
-        System.out.println("weszlo tu");
         Task createdTask = tasksService.createTask(task);
         model.addAttribute("task", createdTask);
         return ("redirect:/");
@@ -59,6 +49,7 @@ public class TaskControler {
         model.addAttribute("task", new Task());
         return ("tasks");
     }
+
     @PostMapping(value = "/by-type/")
     public String showRecordsByType(@RequestParam("type") String type, Model model) {
         var tasks = (List<Task>) tasksService.findByTaskType(type);

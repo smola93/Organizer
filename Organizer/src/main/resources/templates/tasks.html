@@ -29,7 +29,9 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
@@ -41,15 +43,15 @@
     </div>
 </nav>
 <div class="btn-div">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Dodaj Nowe Zadanie
-</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">
+        Dodaj Nowe Zadanie
+    </button>
     <button type="button" class="btn btn-primary btn-filter" data-bs-toggle="modal" data-bs-target="#filterModal">
         Filtruj...
     </button>
 </div>
 <!-- Filter Modal -->
-<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -59,32 +61,32 @@
             <div class="modal-body modal-filter">
                 <div class="btn-group dropend">
                     <form th:action="@{/by-date/}" id="send-date" method="post">
-                    <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" aria-expanded="false">
-                        Według daty
-                    </button>
-                    <ul class="dropdown-menu filter-elm">
-                        <input type="date" id="filter-date" name="date" th:name="date">
-                    </ul>
+                        <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" aria-expanded="false">
+                            Według daty
+                        </button>
+                        <ul class="dropdown-menu filter-elm">
+                            <input type="date" id="filter-date" name="date" th:name="date">
+                        </ul>
                     </form>
                 </div>
                 <div class="btn-group dropend">
                     <form th:action="@{/by-type/}" id="send-type" method="post">
-                    <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" aria-expanded="false">
-                        Według typu
-                    </button>
-                    <ul class="dropdown-menu filter-elm">
-                        <select class="form-select" id="filter-type" th:name="type">
-                            <option value="" hidden>Wybierz typ zadania</option>
-                            <option value="Praca">Praca</option>
-                            <option value="Szkoła">Szkoła</option>
-                            <option value="Czas Wolny">Czas Wolny</option>
-                            <option value="Obowiązki domowe">Obowiązki domowe</option>
-                            <option value="Spotkanie">Spotkanie</option>
-                            <option value="Wydażenie">Wydażenie</option>
-                            <option value="Inne">Inne</option>
-                        </select>
-                        <input type="submit" name="submit" value="Submit" style="display:none;">
-                    </ul>
+                        <button type="button" class="btn btn-secondary dropdown-toggle btn-modal" data-bs-toggle="dropdown" aria-expanded="false">
+                            Według typu
+                        </button>
+                        <ul class="dropdown-menu filter-elm">
+                            <select class="form-select" id="filter-type" th:name="type">
+                                <option value="" hidden>Wybierz typ zadania</option>
+                                <option value="Praca">Praca</option>
+                                <option value="Szkoła">Szkoła</option>
+                                <option value="Czas Wolny">Czas Wolny</option>
+                                <option value="Obowiązki domowe">Obowiązki domowe</option>
+                                <option value="Spotkanie">Spotkanie</option>
+                                <option value="Wydażenie">Wydażenie</option>
+                                <option value="Inne">Inne</option>
+                            </select>
+                            <input type="submit" name="submit" value="Submit" style="display:none;">
+                        </ul>
                     </form>
                 </div>
             </div>
@@ -95,11 +97,11 @@
     </div>
 </div>
 <!--Task Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nowe Zadanie</h5>
+                <h5 class="modal-title" id="taskModalLabel">Nowe Zadanie</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -133,48 +135,45 @@
                         <input type="checkbox" class="form-check-input" id="form-checkbox" value="true" th:field="*{with_reminder}">
                         <div id="emailHelp" class="form-text">Gdy dodasz przypomnienie wyślemy ci odpowiednią notyfikację.</div>
                     </div>
-
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-                <button type="submit" value="Create Task" class="btn btn-primary">Wyślij</button>
-            </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                        <button type="submit" value="Create Task" class="btn btn-primary">Wyślij</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
 <h2 class="custom-title" th:text="${title}"/>
 <table class="table my-table">
     <thead>
-        <tr>
-<!--            <th>Id</th>-->
-            <th>Nazwa</th>
-            <th>Opis zadania</th>
-            <th>Typ</th>
-            <th>Data</th>
-            <th>Włączyć przypomnienie?</th>
-            <th>Data dodania</th>
-        </tr>
+    <tr>
+        <!--            <th>Id</th>-->
+        <th>Nazwa</th>
+        <th>Opis zadania</th>
+        <th>Typ</th>
+        <th>Data</th>
+        <th>Włączyć przypomnienie?</th>
+        <th>Data dodania</th>
+    </tr>
     </thead>
     <tbody>
-        <tr th:each="task : ${tasks}">
-<!--            <td th:text="${task.task_id}">Id</td>-->
-            <td th:text="${task.task_name}">Name</td>
-            <td th:text="${task.task_description}">Description</td>
-            <td th:text="${task.task_type}">Type</td>
-            <td th:text="${task.task_date}">Date</td>
-            <td th:text="${task.with_reminder}">With Reminder</td>
-            <td th:text="${task.created_on}">Created On</td>
-<!--            <td><button type="submit" th:action="@{/delete/{id}(id=${task.task_id})}" class="btn btn-primary">Usuń</button></td>-->
-            <td>
-                <form th:action="@{/delete/{id}(id=${task.task_id})}" th:object="${task}" method="post">
-                    <input type="hidden" th:field="${task}"/>
-                    <button type="submit" class="btn btn-primary" onClick="return confirm('Czy napewno usunąć dany wpis?')">Usuń</button>
-                </form>
-            </td>
-        </tr>
+    <tr th:each="task : ${tasks}">
+        <!--            <td th:text="${task.task_id}">Id</td>-->
+        <td th:text="${task.task_name}">Name</td>
+        <td th:text="${task.task_description}">Description</td>
+        <td th:text="${task.task_type}">Type</td>
+        <td th:text="${task.task_date}">Date</td>
+        <td th:text="${task.with_reminder}">With Reminder</td>
+        <td th:text="${task.created_on}">Created On</td>
+        <!--            <td><button type="submit" th:action="@{/delete/{id}(id=${task.task_id})}" class="btn btn-primary">Usuń</button></td>-->
+        <td>
+            <form th:action="@{/delete/{id}(id=${task.task_id})}" th:object="${task}" method="post">
+                <input type="hidden" th:field="${task}"/>
+                <button type="submit" class="btn btn-primary" onClick="return confirm('Czy napewno usunąć dany wpis?')">Usuń</button>
+            </form>
+        </td>
+    </tr>
     </tbody>
 </table>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
