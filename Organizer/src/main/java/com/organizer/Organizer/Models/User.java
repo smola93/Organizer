@@ -3,9 +3,7 @@ package com.organizer.Organizer.Models;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,11 +15,23 @@ public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String password;
     private String email;
-    private Integer role_id;
+    private Integer role_id = 2;
+
+    public User(){
+    }
+
+    public User(Integer id, String username, String password, String email, Integer role_id) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role_id = role_id;
+    }
 
     /**
      * @return the id
