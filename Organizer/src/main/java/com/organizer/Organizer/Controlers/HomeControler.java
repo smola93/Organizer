@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -26,8 +27,26 @@ public class HomeControler {
 
     @GetMapping(value = "/login")
     String login(Model model) {
+        model.addAttribute("user", new User());
         model.addAttribute("title", "Zaloguj się do aplikacji:");
         return ("login");
+    }
+
+    @PostMapping(value = "/login")
+    String doLogin(@ModelAttribute User user, RedirectAttributes attributes, Model model) {
+        if (userService.isLoginSuccessful(user.getUsername(), user.getPassword())) {
+            User currentUser = userService.findUser(user.getUsername(), user.getPassword());
+            if (currentUser.getRole_id() == 1){
+                return ("redirect:/tasks");
+            }
+            else {
+                attributes.addAttribute("username", currentUser.getUsername());
+                return ("redirect:/user-tasks/" + currentUser.getId());
+            }
+        }
+        else {
+            return ("login");
+        }
     }
 
     @GetMapping(value = "/register")

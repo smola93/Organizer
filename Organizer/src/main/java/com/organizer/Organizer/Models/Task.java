@@ -19,11 +19,12 @@ public class Task {
     private Date task_date;
     private boolean with_reminder = false;
     private LocalDateTime created_on = LocalDateTime.now();
+    private String username;
 
     public Task() {
     }
 
-    public Task(Long id, String name, String description, String type, Date date, boolean withReminder, LocalDateTime createdOn) {
+    public Task(Long id, String name, String description, String type, Date date, boolean withReminder, LocalDateTime createdOn, String username) {
         this.task_id = id;
         this.task_name = name;
         this.task_description = description;
@@ -31,6 +32,7 @@ public class Task {
         this.task_date = date;
         this.with_reminder = withReminder;
         this.created_on = createdOn;
+        this.username = username;
     }
 
     public Long getTask_id() {
@@ -88,4 +90,8 @@ public class Task {
     public void setCreated_on(LocalDateTime created_on) {
         this.created_on = created_on;
     }
+
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
 }

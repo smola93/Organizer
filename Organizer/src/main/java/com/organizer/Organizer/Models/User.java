@@ -16,7 +16,7 @@ public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String username;
     private String password;
     private String email;
@@ -25,7 +25,7 @@ public class User implements UserDetails {
     public User(){
     }
 
-    public User(Integer id, String username, String password, String email, Integer role_id) {
+    public User(Long id, String username, String password, String email, Integer role_id) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -36,14 +36,14 @@ public class User implements UserDetails {
     /**
      * @return the id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -31,14 +31,14 @@
 </nav>
 <h2 class="custom-title" th:text="${title}"/>
 <div class="login-form">
-<form>
+<form method="post" th:action="@{/login}" th:object="${user}">
     <div class="mb-3">
         <label for="InputLogin1" class="form-label">Login</label>
-        <input type="text" class="form-control" id="InputLogin1">
+        <input type="text" class="form-control" id="InputLogin1" th:field="*{username}">
     </div>
     <div class="mb-3">
         <label for="InputPassword1" class="form-label">Hasło</label>
-        <input type="password" class="form-control" id="InputPassword1">
+        <input type="password" class="form-control" id="InputPassword1" th:field="*{password}">
     </div>
     <button type="submit" class="btn btn-primary">Zaloguj</button>
 </form>

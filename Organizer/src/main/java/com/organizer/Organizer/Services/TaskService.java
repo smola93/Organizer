@@ -4,6 +4,7 @@ import com.organizer.Organizer.Models.Task;
 import com.organizer.Organizer.Repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -21,6 +22,14 @@ public class TaskService implements ITaskService {
 
         return tasks;
     }
+
+    @Override
+    public List<Task> findAllForUsers(String username) {
+        var tasks = (List<Task>) repository.findAllForUsers(username);
+
+        return tasks;
+    }
+
     @Override
     public Task createTask(Task task) {
         return repository.save(task);
@@ -34,6 +43,20 @@ public class TaskService implements ITaskService {
     @Override
     public List<Task> findByTaskDate(Date date) {
         var tasks = (List<Task>) repository.findByDate(date);
+
+        return tasks;
+    }
+
+    @Override
+    public List<Task> findByTaskDateForUsers(Date date, String username) {
+        var tasks = (List<Task>) repository.findByDateForUsers(date, username);
+
+        return tasks;
+    }
+
+    @Override
+    public List<Task> findByTaskTypeForUsers(String type, String username) {
+        var tasks = (List<Task>) repository.findByTypeForUsers(type, username);
 
         return tasks;
     }
