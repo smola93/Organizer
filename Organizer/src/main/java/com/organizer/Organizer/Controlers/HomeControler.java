@@ -1,6 +1,5 @@
 package com.organizer.Organizer.Controlers;
 
-import com.organizer.Organizer.Models.Task;
 import com.organizer.Organizer.Models.User;
 import com.organizer.Organizer.Services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Controller
 public class HomeControler {
@@ -56,6 +53,12 @@ public class HomeControler {
         return ("register");
     }
 
+    @GetMapping(value = "/perform-logout")
+    String logout(Model model) {
+        model.addAttribute("title", "Zostałeś pomyślnie wylogowany z systemu.");
+        return ("perform-logout");
+    }
+
     @PostMapping(value = "/register")
     public String doRegistration(@ModelAttribute User user, Model model) {
         if (userService.isUsernameExists(user.getUsername())) {
@@ -74,8 +77,4 @@ public class HomeControler {
         return ("about");
     }
 
-//    @GetMapping(value = "/register-done")
-//    String returnRegisterDone() {
-//        return ("register-done");
-//    }
 }

@@ -10,33 +10,28 @@
 <body>
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Organizer 1.0</a>
+        <a class="navbar-brand" href="/user-tasks">Organizer 1.0</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Lista zadań</a>
+                    <a class="nav-link active" aria-current="page" href="/user-tasks">Lista zadań</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Dodaj zadanie</a>
+                    <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#taskModal">Dodaj zadanie</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span th:text="${welcomeusername}"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="/perform-logout">Wyloguj</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">O aplikacji</a>
+                    <a class="nav-link active" href="/about">O aplikacji</a>
                 </li>
             </ul>
         </div>
@@ -169,7 +164,6 @@
         <td th:text="${task.task_date}">Date</td>
         <td th:text="${task.with_reminder}">With Reminder</td>
         <td th:text="${task.created_on}">Created On</td>
-        <!--            <td><button type="submit" th:action="@{/delete/{id}(id=${task.task_id})}" class="btn btn-primary">Usuń</button></td>-->
         <td>
             <form th:action="@{/delete-user-tasks/{user-id}/{id}(user-id=${id}, id=${task.task_id})}" th:object="${task}" method="post">
                 <input type="hidden" th:field="${task}"/>

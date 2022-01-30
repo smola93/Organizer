@@ -3,8 +3,6 @@ package com.organizer.Organizer.Services;
 import com.organizer.Organizer.Models.Task;
 import com.organizer.Organizer.Repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

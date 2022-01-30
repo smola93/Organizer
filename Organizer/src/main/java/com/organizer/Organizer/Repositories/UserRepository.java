@@ -1,6 +1,5 @@
 package com.organizer.Organizer.Repositories;
 
-import com.organizer.Organizer.Models.Task;
 import com.organizer.Organizer.Models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
